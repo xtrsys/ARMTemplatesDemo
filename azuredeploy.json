@@ -39,9 +39,6 @@
             "name": "prod-appservice",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
-            "tags": {
-                "displayName": "prod-appservice"
-            },
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -73,9 +70,6 @@
             "name": "company-storage",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
-            "tags": {
-                "displayName": "company-storage"
-            },
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {

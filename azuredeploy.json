@@ -13,7 +13,8 @@
     },
     "variables": {
         "webAppName":"[concat('WEB-',uniqueString(resourceGroup().id))]",
-        "storageTemplate":"[concat('https://raw.githubusercontent.com/xtrsys/ARMTemplatesDemo/master/',parameters('environment'),'/storage-deploy.json')]"
+        "storageTemplate":"[concat('https://raw.githubusercontent.com/xtrsys/ARMTemplatesDemo/master/',parameters('environment'),'/storage-deploy.json')]",
+        "prodAppServiceTemplate":"[concat('https://raw.githubusercontent.com/xtrsys/ARMTemplatesDemo/master/',parameters('environment'),'/appservice.json')]"
     },
     "resources": [
         {
@@ -35,21 +36,22 @@
         },
         {
             "condition":"[equals(parameters('environment'),'prod')]",
-            "apiVersion": "2014-06-01",
-            "name": "host01",
-            "type": "Microsoft.Web/serverfarms",
-            "location": "[resourceGroup().location]",
-            "sku": {
-                "name": "S1",
-                "capacity": 1
-            },
+            "name": "prod-appservice",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
             "tags": {
-                "displayName": "host01"
+                "displayName": "prod-appservice"
             },
             "properties": {
-                "name": "host01"
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('prodAppServiceTemplate')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {}
             }
-        },
+        }
+        ,
         {
             "apiVersion": "2015-08-01",
             "name": "[variables('webAppName')]",

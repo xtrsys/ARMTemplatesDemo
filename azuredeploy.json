@@ -13,7 +13,7 @@
     },
     "variables": {
         "webAppName":"[concat('WEB-',uniqueString(resourceGroup().id))]",
-        "storageTemplate":"[concat('https://',parameters('environment'),'/storage-deploy.json')]"
+        "storageTemplate":"[concat('https://raw.githubusercontent.com/xtrsys/ARMTemplatesDemo/master/',parameters('environment'),'/storage-deploy.json')]"
     },
     "resources": [
         {

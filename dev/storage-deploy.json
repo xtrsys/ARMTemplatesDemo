@@ -11,9 +11,6 @@
             "name": "[variables('storageAccountName')]",
             "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
-            "tags": {
-                "displayName": "[variables('storageAccountName')]"
-            },
             "properties": {
                 "accountType": "Standard_LRS"
             }
